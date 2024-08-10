@@ -1,13 +1,9 @@
-import { myPackage } from '../src';
+import GumroadApiClient from '../src';
 
-describe('index', () => {
-  describe('myPackage', () => {
-    it('should return a string containing the message', () => {
-      const message = 'Hello';
-
-      const result = myPackage(message);
-
-      expect(result).toMatch(message);
-    });
+describe('GumroadApiClient', () => {
+  it('should create a GumroadApiClient instance', () => {
+    const accessToken = 'myAccessToken';
+    const apiClient = new GumroadApiClient(accessToken);
+    expect(apiClient).toHaveProperty('accessToken', accessToken);
   });
 });

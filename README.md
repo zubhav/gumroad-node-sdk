@@ -1,6 +1,6 @@
 # gumroad-node-sdk
 
-A Gumroad Node.js API client with Typescript support
+A Gumroad Node.js API client with Typescript support, implementing the official Gumroad API (https://app.gumroad.com/api)
 
 ## Installation
 

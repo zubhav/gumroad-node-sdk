@@ -4,6 +4,9 @@
   "description": "A Gumroad Node.js API client with Typescript support",
   "main": "./lib/index.js",
   "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "lib/**/*"
   ],

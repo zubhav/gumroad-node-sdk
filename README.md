@@ -16,9 +16,7 @@ To use the Gumroad Node.js SDK, you need to create an instance of the `GumroadAp
 ```typescript
 import { GumroadApiClient } from "gumroad-node-sdk";
 
-const gumroadClient = new GumroadApiClient({
-  accessToken: "your-access-token",
-});
+const gumroadClient = new GumroadApiClient("your-access-token");
 
 gumroadClient.getProducts().then(productsResponse => {
     console.log(productsResponse.success);

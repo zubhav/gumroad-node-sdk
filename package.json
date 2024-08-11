@@ -1,5 +1,5 @@
 {
-  "name": "gumroad-node-sdk",
+  "name": "@web-ninja/gumroad-node-sdk",
   "version": "0.0.2",
   "description": "A Gumroad Node.js API client with Typescript support",
   "main": "./lib/index.js",
@@ -23,11 +23,7 @@
     "url": "git+https://github.com/zubhav/gumroad-node-sdk.git"
   },
   "license": "MIT",
-  "author": {
-    "name": "Subhav Gautam",
-    "email": "zubhav@users.noreply.github.com",
-    "url": "https://github.com/zubhav"
-  },
+  "author": "Subhav Gautam <zubhav@users.noreply.github.com> (https://github.com/zubhav)",
   "engines": {
     "node": ">=12.0"
   },

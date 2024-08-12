@@ -1,5 +1,5 @@
 import { GUMROAD_API_V2_BASE_URL } from '../constants';
-import { get, post, put, remove, ApiResponse } from '../api';
+import { get, post, put, remove } from '../api';
 
 export type CustomField = {
   name: string;
@@ -27,11 +27,12 @@ export async function getCustomFields({
 }: {
   accessToken: string;
   productId: string;
-}): Promise<ApiResponse<CustomFieldsResponse>> {
-  return get<CustomFieldsResponse>({
+}): Promise<CustomFieldsResponse> {
+  const response = await get<CustomFieldsResponse>({
     url: `${GUMROAD_API_V2_BASE_URL}/products/${productId}/custom_fields`,
     queryParams: { access_token: accessToken },
   });
+  return response.data;
 }
 
 export async function createCustomField({
@@ -46,12 +47,13 @@ export async function createCustomField({
   name: string;
   required: boolean;
   variant?: string;
-}): Promise<ApiResponse<CustomFieldResponse>> {
-  return post<CustomFieldResponse>({
+}): Promise<CustomFieldResponse> {
+  const response = await post<CustomFieldResponse>({
     url: `${GUMROAD_API_V2_BASE_URL}/products/${productId}/custom_fields`,
     queryParams: { access_token: accessToken },
-    data: { name, required: required.toString(), variant },
+    data: { name, required: required, variant },
   });
+  return response.data;
 }
 
 export async function updateCustomField({
@@ -66,14 +68,15 @@ export async function updateCustomField({
   name: string;
   required?: boolean;
   variant?: string;
-}): Promise<ApiResponse<CustomFieldResponse>> {
-  return put<CustomFieldResponse>({
+}): Promise<CustomFieldResponse> {
+  const response = await put<CustomFieldResponse>({
     url: `${GUMROAD_API_V2_BASE_URL}/products/${productId}/custom_fields/${encodeURIComponent(
       name
     )}`,
     queryParams: { access_token: accessToken },
-    data: { required: required?.toString(), name, variant },
+    data: { required: required, name, variant },
   });
+  return response.data;
 }
 
 export async function deleteCustomField({
@@ -84,11 +87,12 @@ export async function deleteCustomField({
   accessToken: string;
   productId: string;
   name: string;
-}): Promise<ApiResponse<DeleteCustomFieldResponse>> {
-  return remove<DeleteCustomFieldResponse>({
+}): Promise<DeleteCustomFieldResponse> {
+  const response = await remove<DeleteCustomFieldResponse>({
     url: `${GUMROAD_API_V2_BASE_URL}/products/${productId}/custom_fields/${encodeURIComponent(
       name
     )}`,
     queryParams: { access_token: accessToken },
   });
+  return response.data;
 }

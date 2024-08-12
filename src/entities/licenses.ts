@@ -1,5 +1,5 @@
 import { GUMROAD_API_V2_BASE_URL } from '../constants';
-import { post, put, ApiResponse } from '../api';
+import { post, put } from '../api';
 
 export type Card = {
   visual: string | null;
@@ -58,15 +58,16 @@ export async function verifyLicense({
   productId: string;
   licenseKey: string;
   incrementUsesCount?: boolean;
-}): Promise<ApiResponse<LicenseResponse>> {
-  return post<LicenseResponse>({
+}): Promise<LicenseResponse> {
+  const response = await post<LicenseResponse>({
     url: `${GUMROAD_API_V2_BASE_URL}/licenses/verify`,
     data: {
       product_id: productId,
       license_key: licenseKey,
-      increment_uses_count: incrementUsesCount.toString(),
+      increment_uses_count: incrementUsesCount,
     },
   });
+  return response.data;
 }
 
 export async function enableLicense({
@@ -77,12 +78,13 @@ export async function enableLicense({
   accessToken: string;
   productId: string;
   licenseKey: string;
-}): Promise<ApiResponse<LicenseResponse>> {
-  return put<LicenseResponse>({
+}): Promise<LicenseResponse> {
+  const response = await put<LicenseResponse>({
     url: `${GUMROAD_API_V2_BASE_URL}/licenses/enable`,
     queryParams: { access_token: accessToken },
     data: { product_id: productId, license_key: licenseKey },
   });
+  return response.data;
 }
 
 export async function disableLicense({
@@ -93,12 +95,13 @@ export async function disableLicense({
   accessToken: string;
   productId: string;
   licenseKey: string;
-}): Promise<ApiResponse<LicenseResponse>> {
-  return put<LicenseResponse>({
+}): Promise<LicenseResponse> {
+  const response = await put<LicenseResponse>({
     url: `${GUMROAD_API_V2_BASE_URL}/licenses/disable`,
     queryParams: { access_token: accessToken },
     data: { product_id: productId, license_key: licenseKey },
   });
+  return response.data;
 }
 
 export async function decrementLicenseUsesCount({
@@ -109,10 +112,11 @@ export async function decrementLicenseUsesCount({
   accessToken: string;
   productId: string;
   licenseKey: string;
-}): Promise<ApiResponse<LicenseResponse>> {
-  return put<LicenseResponse>({
+}): Promise<LicenseResponse> {
+  const response = await put<LicenseResponse>({
     url: `${GUMROAD_API_V2_BASE_URL}/licenses/decrement_uses_count`,
     queryParams: { access_token: accessToken },
     data: { product_id: productId, license_key: licenseKey },
   });
+  return response.data;
 }

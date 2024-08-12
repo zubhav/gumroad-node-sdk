@@ -1,5 +1,5 @@
 import { GUMROAD_API_V2_BASE_URL } from '../constants';
-import { get, put, remove, ApiResponse } from '../api';
+import { get, put, remove } from '../api';
 
 export type PurchasingPowerParityPrices = {
   [countryCode: string]: number;
@@ -78,11 +78,12 @@ export interface GetProductsParams {
 
 export async function getProducts({
   accessToken,
-}: GetProductsParams): Promise<ApiResponse<ProductsResponse>> {
-  return get<ProductsResponse>({
+}: GetProductsParams): Promise<ProductsResponse> {
+  const response = await get<ProductsResponse>({
     url: `${GUMROAD_API_V2_BASE_URL}/products`,
     queryParams: { access_token: accessToken },
   });
+  return response.data;
 }
 
 export interface GetProductParams {
@@ -93,11 +94,12 @@ export interface GetProductParams {
 export async function getProduct({
   accessToken,
   productId,
-}: GetProductParams): Promise<ApiResponse<ProductResponse>> {
-  return get<ProductResponse>({
+}: GetProductParams): Promise<ProductResponse> {
+  const response = await get<ProductResponse>({
     url: `${GUMROAD_API_V2_BASE_URL}/products/${productId}`,
     queryParams: { access_token: accessToken },
   });
+  return response.data;
 }
 
 export interface DeleteProductParams {
@@ -108,11 +110,12 @@ export interface DeleteProductParams {
 export async function deleteProduct({
   accessToken,
   productId,
-}: DeleteProductParams): Promise<ApiResponse<DeleteProductResponse>> {
-  return remove<DeleteProductResponse>({
+}: DeleteProductParams): Promise<DeleteProductResponse> {
+  const response = await remove<DeleteProductResponse>({
     url: `${GUMROAD_API_V2_BASE_URL}/products/${productId}`,
     queryParams: { access_token: accessToken },
   });
+  return response.data;
 }
 
 export interface EnableProductParams {
@@ -123,11 +126,12 @@ export interface EnableProductParams {
 export async function enableProduct({
   accessToken,
   productId,
-}: EnableProductParams): Promise<ApiResponse<ProductResponse>> {
-  return put<ProductResponse>({
+}: EnableProductParams): Promise<ProductResponse> {
+  const response = await put<ProductResponse>({
     url: `${GUMROAD_API_V2_BASE_URL}/products/${productId}/enable`,
     queryParams: { access_token: accessToken },
   });
+  return response.data;
 }
 
 export interface DisableProductParams {
@@ -138,9 +142,10 @@ export interface DisableProductParams {
 export async function disableProduct({
   accessToken,
   productId,
-}: DisableProductParams): Promise<ApiResponse<ProductResponse>> {
-  return put<ProductResponse>({
+}: DisableProductParams): Promise<ProductResponse> {
+  const response = await put<ProductResponse>({
     url: `${GUMROAD_API_V2_BASE_URL}/products/${productId}/disable`,
     queryParams: { access_token: accessToken },
   });
+  return response.data;
 }

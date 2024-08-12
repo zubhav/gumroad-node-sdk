@@ -1,5 +1,5 @@
 import { GUMROAD_API_V2_BASE_URL } from '../constants';
-import { get, post, put, remove, ApiResponse } from '../api';
+import { get, post, put, remove } from '../api';
 
 export type OfferCode = {
   id: string;
@@ -32,11 +32,12 @@ export async function getOfferCodes({
 }: {
   accessToken: string;
   productId: string;
-}): Promise<ApiResponse<OfferCodesResponse>> {
-  return get<OfferCodesResponse>({
+}): Promise<OfferCodesResponse> {
+  const response = await get<OfferCodesResponse>({
     url: `${GUMROAD_API_V2_BASE_URL}/products/${productId}/offer_codes`,
     queryParams: { access_token: accessToken },
   });
+  return response.data;
 }
 
 export async function getOfferCode({
@@ -47,11 +48,12 @@ export async function getOfferCode({
   accessToken: string;
   productId: string;
   offerCodeId: string;
-}): Promise<ApiResponse<OfferCodeResponse>> {
-  return get<OfferCodeResponse>({
+}): Promise<OfferCodeResponse> {
+  const response = await get<OfferCodeResponse>({
     url: `${GUMROAD_API_V2_BASE_URL}/products/${productId}/offer_codes/${offerCodeId}`,
     queryParams: { access_token: accessToken },
   });
+  return response.data;
 }
 
 export async function createOfferCode({
@@ -70,12 +72,13 @@ export async function createOfferCode({
   offer_type?: 'cents' | 'percent';
   max_purchase_count?: number;
   universal?: boolean;
-}): Promise<ApiResponse<OfferCodeResponse>> {
-  return post<OfferCodeResponse>({
+}): Promise<OfferCodeResponse> {
+  const response = await post<OfferCodeResponse>({
     url: `${GUMROAD_API_V2_BASE_URL}/products/${productId}/offer_codes`,
     queryParams: { access_token: accessToken },
     data: { name, amount_off, offer_type, max_purchase_count, universal },
   });
+  return response.data;
 }
 
 export async function updateOfferCode({
@@ -88,12 +91,13 @@ export async function updateOfferCode({
   productId: string;
   offerCodeId: string;
   max_purchase_count: number;
-}): Promise<ApiResponse<OfferCodeResponse>> {
-  return put<OfferCodeResponse>({
+}): Promise<OfferCodeResponse> {
+  const response = await put<OfferCodeResponse>({
     url: `${GUMROAD_API_V2_BASE_URL}/products/${productId}/offer_codes/${offerCodeId}`,
     queryParams: { access_token: accessToken },
     data: { max_purchase_count },
   });
+  return response.data;
 }
 
 export async function deleteOfferCode({
@@ -104,9 +108,10 @@ export async function deleteOfferCode({
   accessToken: string;
   productId: string;
   offerCodeId: string;
-}): Promise<ApiResponse<DeleteOfferCodeResponse>> {
-  return remove<DeleteOfferCodeResponse>({
+}): Promise<DeleteOfferCodeResponse> {
+  const response = await remove<DeleteOfferCodeResponse>({
     url: `${GUMROAD_API_V2_BASE_URL}/products/${productId}/offer_codes/${offerCodeId}`,
     queryParams: { access_token: accessToken },
   });
+  return response.data;
 }

@@ -1,5 +1,5 @@
 import { GUMROAD_API_V2_BASE_URL } from '../constants';
-import { get, put, remove, ApiResponse } from '../api';
+import { get, put, remove } from '../api';
 
 export type ResourceName =
   | 'sale'
@@ -40,12 +40,13 @@ export async function subscribeToResource({
   accessToken: string;
   resourceName: ResourceName;
   postUrl: string;
-}): Promise<ApiResponse<ResourceSubscriptionResponse>> {
-  return put<ResourceSubscriptionResponse>({
+}): Promise<ResourceSubscriptionResponse> {
+  const response = await put<ResourceSubscriptionResponse>({
     url: `${GUMROAD_API_V2_BASE_URL}/resource_subscriptions`,
     queryParams: { access_token: accessToken },
     data: { resource_name: resourceName, post_url: postUrl },
   });
+  return response.data;
 }
 
 export async function getResourceSubscriptions({
@@ -54,11 +55,12 @@ export async function getResourceSubscriptions({
 }: {
   accessToken: string;
   resourceName: ResourceName;
-}): Promise<ApiResponse<ResourceSubscriptionsResponse>> {
-  return get<ResourceSubscriptionsResponse>({
+}): Promise<ResourceSubscriptionsResponse> {
+  const response = await get<ResourceSubscriptionsResponse>({
     url: `${GUMROAD_API_V2_BASE_URL}/resource_subscriptions`,
     queryParams: { access_token: accessToken, resource_name: resourceName },
   });
+  return response.data;
 }
 
 export async function unsubscribeFromResource({
@@ -67,9 +69,10 @@ export async function unsubscribeFromResource({
 }: {
   accessToken: string;
   resourceSubscriptionId: string;
-}): Promise<ApiResponse<DeleteResourceSubscriptionResponse>> {
-  return remove<DeleteResourceSubscriptionResponse>({
+}): Promise<DeleteResourceSubscriptionResponse> {
+  const response = await remove<DeleteResourceSubscriptionResponse>({
     url: `${GUMROAD_API_V2_BASE_URL}/resource_subscriptions/${resourceSubscriptionId}`,
     queryParams: { access_token: accessToken },
   });
+  return response.data;
 }

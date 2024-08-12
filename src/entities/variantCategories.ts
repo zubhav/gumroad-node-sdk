@@ -1,5 +1,5 @@
 import { GUMROAD_API_V2_BASE_URL } from '../constants';
-import { get, post, put, remove, ApiResponse } from '../api';
+import { get, post, put, remove } from '../api';
 
 export type VariantCategory = {
   id: string;
@@ -46,12 +46,13 @@ export async function createVariantCategory({
   accessToken: string;
   productId: string;
   title: string;
-}): Promise<ApiResponse<VariantCategoryResponse>> {
-  return post<VariantCategoryResponse>({
+}): Promise<VariantCategoryResponse> {
+  const response = await post<VariantCategoryResponse>({
     url: `${GUMROAD_API_V2_BASE_URL}/products/${productId}/variant_categories`,
     queryParams: { access_token: accessToken },
     data: { title },
   });
+  return response.data;
 }
 
 export async function getVariantCategory({
@@ -62,11 +63,12 @@ export async function getVariantCategory({
   accessToken: string;
   productId: string;
   variantCategoryId: string;
-}): Promise<ApiResponse<VariantCategoryResponse>> {
-  return get<VariantCategoryResponse>({
+}): Promise<VariantCategoryResponse> {
+  const response = await get<VariantCategoryResponse>({
     url: `${GUMROAD_API_V2_BASE_URL}/products/${productId}/variant_categories/${variantCategoryId}`,
     queryParams: { access_token: accessToken },
   });
+  return response.data;
 }
 
 export async function updateVariantCategory({
@@ -79,12 +81,13 @@ export async function updateVariantCategory({
   productId: string;
   variantCategoryId: string;
   title: string;
-}): Promise<ApiResponse<VariantCategoryResponse>> {
-  return put<VariantCategoryResponse>({
+}): Promise<VariantCategoryResponse> {
+  const response = await put<VariantCategoryResponse>({
     url: `${GUMROAD_API_V2_BASE_URL}/products/${productId}/variant_categories/${variantCategoryId}`,
     queryParams: { access_token: accessToken },
     data: { title },
   });
+  return response.data;
 }
 
 export async function deleteVariantCategory({
@@ -95,11 +98,12 @@ export async function deleteVariantCategory({
   accessToken: string;
   productId: string;
   variantCategoryId: string;
-}): Promise<ApiResponse<DeleteResponse>> {
-  return remove<DeleteResponse>({
+}): Promise<DeleteResponse> {
+  const response = await remove<DeleteResponse>({
     url: `${GUMROAD_API_V2_BASE_URL}/products/${productId}/variant_categories/${variantCategoryId}`,
     queryParams: { access_token: accessToken },
   });
+  return response.data;
 }
 
 export async function getVariantCategories({
@@ -108,11 +112,12 @@ export async function getVariantCategories({
 }: {
   accessToken: string;
   productId: string;
-}): Promise<ApiResponse<VariantCategoriesResponse>> {
-  return get<VariantCategoriesResponse>({
+}): Promise<VariantCategoriesResponse> {
+  const response = await get<VariantCategoriesResponse>({
     url: `${GUMROAD_API_V2_BASE_URL}/products/${productId}/variant_categories`,
     queryParams: { access_token: accessToken },
   });
+  return response.data;
 }
 
 export async function createVariant({
@@ -129,12 +134,13 @@ export async function createVariant({
   name: string;
   price_difference_cents: number;
   max_purchase_count?: number;
-}): Promise<ApiResponse<VariantResponse>> {
-  return post<VariantResponse>({
+}): Promise<VariantResponse> {
+  const response = await post<VariantResponse>({
     url: `${GUMROAD_API_V2_BASE_URL}/products/${productId}/variant_categories/${variantCategoryId}/variants`,
     queryParams: { access_token: accessToken },
     data: { name, price_difference_cents, max_purchase_count },
   });
+  return response.data;
 }
 
 export async function getVariant({
@@ -147,11 +153,12 @@ export async function getVariant({
   productId: string;
   variantCategoryId: string;
   variantId: string;
-}): Promise<ApiResponse<VariantResponse>> {
-  return get<VariantResponse>({
+}): Promise<VariantResponse> {
+  const response = await get<VariantResponse>({
     url: `${GUMROAD_API_V2_BASE_URL}/products/${productId}/variant_categories/${variantCategoryId}/variants/${variantId}`,
     queryParams: { access_token: accessToken },
   });
+  return response.data;
 }
 
 export async function updateVariant({
@@ -170,12 +177,13 @@ export async function updateVariant({
   name?: string;
   price_difference_cents?: number;
   max_purchase_count?: number;
-}): Promise<ApiResponse<VariantResponse>> {
-  return put<VariantResponse>({
+}): Promise<VariantResponse> {
+  const response = await put<VariantResponse>({
     url: `${GUMROAD_API_V2_BASE_URL}/products/${productId}/variant_categories/${variantCategoryId}/variants/${variantId}`,
     queryParams: { access_token: accessToken },
     data: { name, price_difference_cents, max_purchase_count },
   });
+  return response.data;
 }
 
 export async function deleteVariant({
@@ -188,11 +196,12 @@ export async function deleteVariant({
   productId: string;
   variantCategoryId: string;
   variantId: string;
-}): Promise<ApiResponse<DeleteResponse>> {
-  return remove<DeleteResponse>({
+}): Promise<DeleteResponse> {
+  const response = await remove<DeleteResponse>({
     url: `${GUMROAD_API_V2_BASE_URL}/products/${productId}/variant_categories/${variantCategoryId}/variants/${variantId}`,
     queryParams: { access_token: accessToken },
   });
+  return response.data;
 }
 
 export async function getVariants({
@@ -203,9 +212,10 @@ export async function getVariants({
   accessToken: string;
   productId: string;
   variantCategoryId: string;
-}): Promise<ApiResponse<VariantsResponse>> {
-  return get<VariantsResponse>({
+}): Promise<VariantsResponse> {
+  const response = await get<VariantsResponse>({
     url: `${GUMROAD_API_V2_BASE_URL}/products/${productId}/variant_categories/${variantCategoryId}/variants`,
     queryParams: { access_token: accessToken },
   });
+  return response.data;
 }

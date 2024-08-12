@@ -1,5 +1,5 @@
 import { GUMROAD_API_V2_BASE_URL } from '../constants';
-import { get, ApiResponse } from '../api';
+import { get } from '../api';
 
 export type Subscriber = {
   id: string;
@@ -38,11 +38,12 @@ export async function getSubscribers({
   accessToken: string;
   productId: string;
   email?: string;
-}): Promise<ApiResponse<SubscribersResponse>> {
-  return get<SubscribersResponse>({
+}): Promise<SubscribersResponse> {
+  const response = await get<SubscribersResponse>({
     url: `${GUMROAD_API_V2_BASE_URL}/products/${productId}/subscribers`,
     queryParams: { access_token: accessToken, email },
   });
+  return response.data;
 }
 
 export async function getSubscriber({
@@ -51,9 +52,10 @@ export async function getSubscriber({
 }: {
   accessToken: string;
   subscriberId: string;
-}): Promise<ApiResponse<SubscriberResponse>> {
-  return get<SubscriberResponse>({
+}): Promise<SubscriberResponse> {
+  const response = await get<SubscriberResponse>({
     url: `${GUMROAD_API_V2_BASE_URL}/subscribers/${subscriberId}`,
     queryParams: { access_token: accessToken },
   });
+  return response.data;
 }

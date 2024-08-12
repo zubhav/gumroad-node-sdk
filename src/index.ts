@@ -1,4 +1,3 @@
-import { ApiResponse } from './api';
 import {
   getProducts,
   getProduct,
@@ -84,7 +83,7 @@ class GumroadApiClient {
     this.accessToken = accessToken;
   }
 
-  async getProducts(): Promise<ApiResponse<ProductsResponse>> {
+  async getProducts(): Promise<ProductsResponse> {
     return getProducts({ accessToken: this.accessToken });
   }
 
@@ -92,7 +91,7 @@ class GumroadApiClient {
     productId,
   }: {
     productId: string;
-  }): Promise<ApiResponse<ProductResponse>> {
+  }): Promise<ProductResponse> {
     return getProduct({ accessToken: this.accessToken, productId });
   }
 
@@ -100,7 +99,7 @@ class GumroadApiClient {
     productId,
   }: {
     productId: string;
-  }): Promise<ApiResponse<DeleteProductResponse>> {
+  }): Promise<DeleteProductResponse> {
     return deleteProduct({ accessToken: this.accessToken, productId });
   }
 
@@ -108,7 +107,7 @@ class GumroadApiClient {
     productId,
   }: {
     productId: string;
-  }): Promise<ApiResponse<ProductResponse>> {
+  }): Promise<ProductResponse> {
     return enableProduct({ accessToken: this.accessToken, productId });
   }
 
@@ -116,7 +115,7 @@ class GumroadApiClient {
     productId,
   }: {
     productId: string;
-  }): Promise<ApiResponse<ProductResponse>> {
+  }): Promise<ProductResponse> {
     return disableProduct({ accessToken: this.accessToken, productId });
   }
 
@@ -126,7 +125,7 @@ class GumroadApiClient {
   }: {
     productId: string;
     title: string;
-  }): Promise<ApiResponse<VariantCategoryResponse>> {
+  }): Promise<VariantCategoryResponse> {
     return createVariantCategory({
       accessToken: this.accessToken,
       productId,
@@ -140,7 +139,7 @@ class GumroadApiClient {
   }: {
     productId: string;
     variantCategoryId: string;
-  }): Promise<ApiResponse<VariantCategoryResponse>> {
+  }): Promise<VariantCategoryResponse> {
     return getVariantCategory({
       accessToken: this.accessToken,
       productId,
@@ -156,7 +155,7 @@ class GumroadApiClient {
     productId: string;
     variantCategoryId: string;
     title: string;
-  }): Promise<ApiResponse<VariantCategoryResponse>> {
+  }): Promise<VariantCategoryResponse> {
     return updateVariantCategory({
       accessToken: this.accessToken,
       productId,
@@ -171,7 +170,7 @@ class GumroadApiClient {
   }: {
     productId: string;
     variantCategoryId: string;
-  }): Promise<ApiResponse<DeleteResponse>> {
+  }): Promise<DeleteResponse> {
     return deleteVariantCategory({
       accessToken: this.accessToken,
       productId,
@@ -183,7 +182,7 @@ class GumroadApiClient {
     productId,
   }: {
     productId: string;
-  }): Promise<ApiResponse<VariantCategoriesResponse>> {
+  }): Promise<VariantCategoriesResponse> {
     return getVariantCategories({ accessToken: this.accessToken, productId });
   }
 
@@ -199,7 +198,7 @@ class GumroadApiClient {
     name: string;
     price_difference_cents: number;
     max_purchase_count?: number;
-  }): Promise<ApiResponse<VariantResponse>> {
+  }): Promise<VariantResponse> {
     return createVariant({
       accessToken: this.accessToken,
       productId,
@@ -218,7 +217,7 @@ class GumroadApiClient {
     productId: string;
     variantCategoryId: string;
     variantId: string;
-  }): Promise<ApiResponse<VariantResponse>> {
+  }): Promise<VariantResponse> {
     return getVariant({
       accessToken: this.accessToken,
       productId,
@@ -241,7 +240,7 @@ class GumroadApiClient {
     name?: string;
     price_difference_cents?: number;
     max_purchase_count?: number;
-  }): Promise<ApiResponse<VariantResponse>> {
+  }): Promise<VariantResponse> {
     return updateVariant({
       accessToken: this.accessToken,
       productId,
@@ -261,7 +260,7 @@ class GumroadApiClient {
     productId: string;
     variantCategoryId: string;
     variantId: string;
-  }): Promise<ApiResponse<DeleteResponse>> {
+  }): Promise<DeleteResponse> {
     return deleteVariant({
       accessToken: this.accessToken,
       productId,
@@ -276,7 +275,7 @@ class GumroadApiClient {
   }: {
     productId: string;
     variantCategoryId: string;
-  }): Promise<ApiResponse<VariantsResponse>> {
+  }): Promise<VariantsResponse> {
     return getVariants({
       accessToken: this.accessToken,
       productId,
@@ -288,7 +287,7 @@ class GumroadApiClient {
     productId,
   }: {
     productId: string;
-  }): Promise<ApiResponse<OfferCodesResponse>> {
+  }): Promise<OfferCodesResponse> {
     return getOfferCodes({ accessToken: this.accessToken, productId });
   }
 
@@ -298,7 +297,7 @@ class GumroadApiClient {
   }: {
     productId: string;
     offerCodeId: string;
-  }): Promise<ApiResponse<OfferCodeResponse>> {
+  }): Promise<OfferCodeResponse> {
     return getOfferCode({
       accessToken: this.accessToken,
       productId,
@@ -320,7 +319,7 @@ class GumroadApiClient {
     offer_type?: 'cents' | 'percent';
     max_purchase_count?: number;
     universal?: boolean;
-  }): Promise<ApiResponse<OfferCodeResponse>> {
+  }): Promise<OfferCodeResponse> {
     return createOfferCode({
       accessToken: this.accessToken,
       productId,
@@ -340,7 +339,7 @@ class GumroadApiClient {
     productId: string;
     offerCodeId: string;
     max_purchase_count: number;
-  }): Promise<ApiResponse<OfferCodeResponse>> {
+  }): Promise<OfferCodeResponse> {
     return updateOfferCode({
       accessToken: this.accessToken,
       productId,
@@ -355,7 +354,7 @@ class GumroadApiClient {
   }: {
     productId: string;
     offerCodeId: string;
-  }): Promise<ApiResponse<DeleteOfferCodeResponse>> {
+  }): Promise<DeleteOfferCodeResponse> {
     return deleteOfferCode({
       accessToken: this.accessToken,
       productId,
@@ -367,7 +366,7 @@ class GumroadApiClient {
     productId,
   }: {
     productId: string;
-  }): Promise<ApiResponse<CustomFieldsResponse>> {
+  }): Promise<CustomFieldsResponse> {
     return getCustomFields({ accessToken: this.accessToken, productId });
   }
 
@@ -381,7 +380,7 @@ class GumroadApiClient {
     name: string;
     required: boolean;
     variant?: string;
-  }): Promise<ApiResponse<CustomFieldResponse>> {
+  }): Promise<CustomFieldResponse> {
     return createCustomField({
       accessToken: this.accessToken,
       productId,
@@ -401,7 +400,7 @@ class GumroadApiClient {
     name: string;
     required?: boolean;
     variant?: string;
-  }): Promise<ApiResponse<CustomFieldResponse>> {
+  }): Promise<CustomFieldResponse> {
     return updateCustomField({
       accessToken: this.accessToken,
       productId,
@@ -417,7 +416,7 @@ class GumroadApiClient {
   }: {
     productId: string;
     name: string;
-  }): Promise<ApiResponse<DeleteCustomFieldResponse>> {
+  }): Promise<DeleteCustomFieldResponse> {
     return deleteCustomField({
       accessToken: this.accessToken,
       productId,
@@ -425,7 +424,7 @@ class GumroadApiClient {
     });
   }
 
-  async getUser(): Promise<ApiResponse<UserResponse>> {
+  async getUser(): Promise<UserResponse> {
     return getUser({ accessToken: this.accessToken });
   }
 
@@ -435,7 +434,7 @@ class GumroadApiClient {
   }: {
     resourceName: ResourceName;
     postUrl: string;
-  }): Promise<ApiResponse<ResourceSubscriptionResponse>> {
+  }): Promise<ResourceSubscriptionResponse> {
     return subscribeToResource({
       accessToken: this.accessToken,
       resourceName,
@@ -447,7 +446,7 @@ class GumroadApiClient {
     resourceName,
   }: {
     resourceName: ResourceName;
-  }): Promise<ApiResponse<ResourceSubscriptionsResponse>> {
+  }): Promise<ResourceSubscriptionsResponse> {
     return getResourceSubscriptions({
       accessToken: this.accessToken,
       resourceName,
@@ -458,7 +457,7 @@ class GumroadApiClient {
     resourceSubscriptionId,
   }: {
     resourceSubscriptionId: string;
-  }): Promise<ApiResponse<DeleteResourceSubscriptionResponse>> {
+  }): Promise<DeleteResourceSubscriptionResponse> {
     return unsubscribeFromResource({
       accessToken: this.accessToken,
       resourceSubscriptionId,
@@ -479,7 +478,7 @@ class GumroadApiClient {
     email?: string;
     order_id?: string;
     page_key?: string;
-  }): Promise<ApiResponse<SalesResponse>> {
+  }): Promise<SalesResponse> {
     return getSales({
       accessToken: this.accessToken,
       after,
@@ -491,11 +490,7 @@ class GumroadApiClient {
     });
   }
 
-  async getSale({
-    saleId,
-  }: {
-    saleId: string;
-  }): Promise<ApiResponse<SaleResponse>> {
+  async getSale({ saleId }: { saleId: string }): Promise<SaleResponse> {
     return getSale({
       accessToken: this.accessToken,
       saleId,
@@ -508,7 +503,7 @@ class GumroadApiClient {
   }: {
     saleId: string;
     tracking_url?: string;
-  }): Promise<ApiResponse<SaleResponse>> {
+  }): Promise<SaleResponse> {
     return markAsShipped({
       accessToken: this.accessToken,
       saleId,
@@ -522,7 +517,7 @@ class GumroadApiClient {
   }: {
     saleId: string;
     amount_cents?: number;
-  }): Promise<ApiResponse<SaleResponse>> {
+  }): Promise<SaleResponse> {
     return refundSale({
       accessToken: this.accessToken,
       saleId,
@@ -536,7 +531,7 @@ class GumroadApiClient {
   }: {
     productId: string;
     email?: string;
-  }): Promise<ApiResponse<SubscribersResponse>> {
+  }): Promise<SubscribersResponse> {
     return getSubscribers({
       accessToken: this.accessToken,
       productId,
@@ -548,7 +543,7 @@ class GumroadApiClient {
     subscriberId,
   }: {
     subscriberId: string;
-  }): Promise<ApiResponse<SubscriberResponse>> {
+  }): Promise<SubscriberResponse> {
     return getSubscriber({
       accessToken: this.accessToken,
       subscriberId,
@@ -563,7 +558,7 @@ class GumroadApiClient {
     productId: string;
     licenseKey: string;
     incrementUsesCount?: boolean;
-  }): Promise<ApiResponse<LicenseResponse>> {
+  }): Promise<LicenseResponse> {
     return verifyLicense({
       productId,
       licenseKey,
@@ -577,7 +572,7 @@ class GumroadApiClient {
   }: {
     productId: string;
     licenseKey: string;
-  }): Promise<ApiResponse<LicenseResponse>> {
+  }): Promise<LicenseResponse> {
     return enableLicense({
       accessToken: this.accessToken,
       productId,
@@ -591,7 +586,7 @@ class GumroadApiClient {
   }: {
     productId: string;
     licenseKey: string;
-  }): Promise<ApiResponse<LicenseResponse>> {
+  }): Promise<LicenseResponse> {
     return disableLicense({
       accessToken: this.accessToken,
       productId,
@@ -605,7 +600,7 @@ class GumroadApiClient {
   }: {
     productId: string;
     licenseKey: string;
-  }): Promise<ApiResponse<LicenseResponse>> {
+  }): Promise<LicenseResponse> {
     return decrementLicenseUsesCount({
       accessToken: this.accessToken,
       productId,

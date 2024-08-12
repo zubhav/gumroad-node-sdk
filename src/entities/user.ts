@@ -1,5 +1,5 @@
 import { GUMROAD_API_V2_BASE_URL } from '../constants';
-import { get, ApiResponse } from '../api';
+import { get } from '../api';
 
 export type User = {
   bio: string;
@@ -19,9 +19,10 @@ export async function getUser({
   accessToken,
 }: {
   accessToken: string;
-}): Promise<ApiResponse<UserResponse>> {
-  return get<UserResponse>({
+}): Promise<UserResponse> {
+  const response = await get<UserResponse>({
     url: `${GUMROAD_API_V2_BASE_URL}/user`,
     queryParams: { access_token: accessToken },
   });
+  return response.data;
 }

@@ -1,5 +1,5 @@
 import { GUMROAD_API_V2_BASE_URL } from '../constants';
-import { get, put, ApiResponse } from '../api';
+import { get, put } from '../api';
 
 export type Sale = {
   id: string;
@@ -101,8 +101,8 @@ export async function getSales({
   email,
   order_id,
   page_key,
-}: GetSalesParams): Promise<ApiResponse<SalesResponse>> {
-  return get<SalesResponse>({
+}: GetSalesParams): Promise<SalesResponse> {
+  const response = await get<SalesResponse>({
     url: `${GUMROAD_API_V2_BASE_URL}/sales`,
     queryParams: {
       access_token: accessToken,
@@ -114,6 +114,7 @@ export async function getSales({
       page_key,
     },
   });
+  return response.data;
 }
 
 interface GetSaleParams {
@@ -124,11 +125,12 @@ interface GetSaleParams {
 export async function getSale({
   accessToken,
   saleId,
-}: GetSaleParams): Promise<ApiResponse<SaleResponse>> {
-  return get<SaleResponse>({
+}: GetSaleParams): Promise<SaleResponse> {
+  const response = await get<SaleResponse>({
     url: `${GUMROAD_API_V2_BASE_URL}/sales/${saleId}`,
     queryParams: { access_token: accessToken },
   });
+  return response.data;
 }
 
 interface MarkAsShippedParams {
@@ -141,12 +143,13 @@ export async function markAsShipped({
   accessToken,
   saleId,
   tracking_url,
-}: MarkAsShippedParams): Promise<ApiResponse<SaleResponse>> {
-  return put<SaleResponse>({
+}: MarkAsShippedParams): Promise<SaleResponse> {
+  const response = await put<SaleResponse>({
     url: `${GUMROAD_API_V2_BASE_URL}/sales/${saleId}/mark_as_shipped`,
     queryParams: { access_token: accessToken },
     data: { tracking_url },
   });
+  return response.data;
 }
 
 interface RefundSaleParams {
@@ -159,10 +162,11 @@ export async function refundSale({
   accessToken,
   saleId,
   amount_cents,
-}: RefundSaleParams): Promise<ApiResponse<SaleResponse>> {
-  return put<SaleResponse>({
+}: RefundSaleParams): Promise<SaleResponse> {
+  const response = await put<SaleResponse>({
     url: `${GUMROAD_API_V2_BASE_URL}/sales/${saleId}/refund`,
     queryParams: { access_token: accessToken },
     data: { amount_cents },
   });
+  return response.data;
 }
